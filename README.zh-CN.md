@@ -99,6 +99,21 @@ Open Water Guard 是：
 - 第一版物料清单：[BOM.md](BOM.md)
 - 中文知识库：[DOC/00-知识库索引.md](DOC/00-知识库索引.md)
 
+## 许可说明
+
+Open Water Guard 使用分层许可模式：
+
+- 开源检测与本机报警层代码：Apache License 2.0。
+- 文档、图示、照片、教程和桌面测试材料：CC BY-NC 4.0。
+- 可选阀门执行器实验材料、商业固件、量产 PCB 文件、白牌资料和商业支持工具，不包含在开源代码许可内，后续按单独条款处理。
+
+请查看：
+
+- [LICENSE](LICENSE)
+- [LICENSE-DOCS.md](LICENSE-DOCS.md)
+- [LICENSE-BOUNDARY.md](LICENSE-BOUNDARY.md)
+- [docs/open-source-boundary.md](docs/open-source-boundary.md)
+
 ## 支持项目开发
 
 这是一个独立 DIY 开源硬件项目。

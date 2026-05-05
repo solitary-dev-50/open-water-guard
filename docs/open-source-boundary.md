@@ -161,6 +161,13 @@ The project does **not** need:
 - exact daily household water schedule
 - private household details
 
+## License Reference
+
+- code license: Apache-2.0
+- documentation license: CC BY-NC 4.0
+- restricted layers require separate permission
+- source-available for non-commercial testing is not standard open source
+
 ## Commercial Licensing
 
 Commercial collaboration may include:

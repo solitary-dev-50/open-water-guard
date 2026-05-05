@@ -110,6 +110,21 @@ Users should test in a safe desktop water loop before deciding how to integrate 
 - BOM: [BOM.md](BOM.md)
 - Chinese internal notes: [DOC/00-知识库索引.md](DOC/00-知识库索引.md)
 
+## License
+
+Open Water Guard uses a layered licensing model:
+
+- Open sensing and local alerting code: Apache License 2.0.
+- Documentation, diagrams, photos, tutorials, and test-bench materials: CC BY-NC 4.0.
+- Optional valve-actuator experiment materials, production firmware, production PCB files, white-label materials, and commercial support tools are not covered by the open code license and may use separate terms.
+
+See:
+
+- [LICENSE](LICENSE)
+- [LICENSE-DOCS.md](LICENSE-DOCS.md)
+- [LICENSE-BOUNDARY.md](LICENSE-BOUNDARY.md)
+- [docs/open-source-boundary.md](docs/open-source-boundary.md)
+
 ## Support Development
 
 This is an independent DIY open hardware project.
