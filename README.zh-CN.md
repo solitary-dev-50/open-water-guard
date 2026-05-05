@@ -98,3 +98,13 @@ Open Water Guard 是：
 - 安全说明：[docs/safety-notes.md](docs/safety-notes.md)
 - 第一版物料清单：[BOM.md](BOM.md)
 - 中文知识库：[DOC/00-知识库索引.md](DOC/00-知识库索引.md)
+
+## 支持项目开发
+
+这是一个独立 DIY 开源硬件项目。
+
+如果你觉得这个项目有用，可以支持后续传感器测试、板子改版、测试夹具、桌面水路实验和文档整理：
+
+- Ko-fi: https://ko-fi.com/solitarydev50
+
+这不是产品预购。赞助只用于支持元器件、测试和开源文档工作。

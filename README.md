@@ -109,3 +109,13 @@ Users should test in a safe desktop water loop before deciding how to integrate 
 - Safety notes: [docs/safety-notes.md](docs/safety-notes.md)
 - BOM: [BOM.md](BOM.md)
 - Chinese internal notes: [DOC/00-知识库索引.md](DOC/00-知识库索引.md)
+
+## Support Development
+
+This is an independent DIY open hardware project.
+
+If you find it useful, you can support future sensors, PCB revisions, test fixtures, desktop water-loop experiments, and documentation work here:
+
+- Ko-fi: https://ko-fi.com/solitarydev50
+
+This is not a product pre-order. Contributions help fund parts, testing, and open documentation.
