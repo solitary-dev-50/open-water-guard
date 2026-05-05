@@ -1,99 +1,111 @@
-﻿# Open Water Guard (OWG)
+# Open Water Guard
 
-> We believe every family deserves a guard they can trust, without a subscription fee.
+Open Water Guard is an offline DIY water monitoring controller board for leak probes, flow sensors, buzzers, buttons, indicators, and optional display output. It does not connect to the internet, uses no cloud path, and does not upload household water data.
 
-**My Water, My Guard.**
+## What This First Release Is
 
-Open Water Guard is an offline-first ESP32/ESP32-S3 water safety project for home leak monitoring, local alarms, and cautious main-valve shutoff.
+The first public release focuses on:
 
-It is designed around a simple belief: the final authority over a family's main water valve should stay inside the home.
+- leak sensing
+- flow sensing
+- basic low-flow detection
+- local buzzer alerts
+- buttons for mute and acknowledgement
+- indicator outputs
+- optional display output
 
-## Driven by Iris
+This first release is for **sensing and local alerting only**.
 
-OWG is driven by Iris, a control mindset focused on state awareness, physical execution, and result verification.
+## What This Project Is Not
 
-In this project, that means:
+Open Water Guard is:
 
-- Detect water risks locally.
-- Warn the user before taking action.
-- Keep automatic shutoff behind explicit local rules enabled by the user.
-- Move the valve only under clear rules.
-- Verify whether the water actually stopped.
+- fully offline
+- not connected to the internet
+- no cloud path
+- not uploading data
+- a DIY controller board project
+- not a consumer-ready appliance
+- not a certified home-plumbing safety appliance
 
-## What It Tries To Solve
+Open Water Guard does **not** offer:
 
-Common home water failures include:
+- valves
+- plumbing parts
+- install work
 
-- Washing machine hose bursts.
-- Water heater leaks.
-- Kitchen sink leaks.
-- Running toilets.
-- Dripping faucets.
-- Basement pipe leaks.
-- Hidden long-duration low-flow leaks.
+## Project Scope
 
-Many leak alarms only beep. OWG tries to go further: detect, warn, log, and, when the user allows it, shut off the main valve locally.
+The current open detection layer is meant to help makers build and test a local water-monitoring board with:
 
-## Core Ideas
+- leak probes
+- flow sensors
+- buzzer output
+- buttons
+- indicators
+- optional display output
 
-### Offline First
+The goal is simple: detect local water-related events and warn the user locally without relying on network infrastructure.
 
-The core safety loop should work without the internet:
+## Offline by Design
 
-- Local sensors.
-- Local alarm.
-- Local web console.
-- Local valve control.
-- Local event logs.
+Open Water Guard is simply offline.
 
-Cloud notification can be useful, but it should not be the final authority.
+- no internet connection
+- no cloud path
+- no mobile app dependency
+- no server dependency
+- no household data upload
 
-### Always Offline
+All sensing, evaluation, and local alerts are intended to run on the board itself.
 
-OWG is designed to stay offline by default and by principle.
+## Important Boundary
 
-- No cloud command path.
-- No subscription dependency.
-- No remote authority over the main valve.
-- Automatic shutoff can only come from local rules explicitly enabled by the user.
-- The user can always cancel, enter maintenance mode, or control the valve on site.
+This repository currently focuses on the **open sensing and local alerting layer**.
 
-### Closed-Loop Shutoff
+It does not present itself as:
 
-Closing the valve is not the end. Confirming downstream flow has stopped is the loop.
+- an automatic valve appliance
+- a finished anti-leak appliance
+- an online smart-home platform
+- a plumbing contractor business
 
-OWG should not only ask, "Did the motor move?"
+If future experimental actuator work appears, it will be treated as a separate and more restricted layer.
 
-It should also ask, "Did the water actually stop?"
+## First-Version Hardware Direction
 
-### Haptic Water-Pulse
+The first-version controller board knowledge base currently centers around:
 
-Haptic Water-Pulse is a v2 research direction.
+- ESP32 / ESP32-S3 controller board
+- leak probes
+- flow sensor input
+- buzzer
+- buttons
+- indicator outputs
+- optional display
+- power module
+- wiring for a desktop water test bench
 
-The idea is to warn people through the water itself before shutting it off: a brief, controlled pressure pulse can tell a person who is showering or using water that the system suspects a leak.
+Valve actuators are not part of the first required build. They belong only to a future optional experiment layer.
 
-This is not a first-version promise. It needs careful safety validation.
+## Safety Position
 
-## First-Version Direction
+This project is for DIY board-level experimentation and documentation.
 
-The first version should stay conservative:
+It does not promise:
 
-- ESP32-S3 controller.
-- 3-4 leak probe inputs.
-- Water flow sensor.
-- Electric ball valve.
-- Buzzer and status LED.
-- Physical buttons.
-- Backup power path.
-- Local web console.
-- Event logs.
+- certified protection
+- insurance-grade loss prevention
+- avoidance of all water damage
 
-Default mode: alarm only. Automatic shutoff must be explicitly enabled by the user.
+Users should test in a safe desktop water loop before deciding how to integrate the controller board into their own setup.
 
 ## Documentation
 
-The structured knowledge base is in [DOC/](DOC/00-知识库索引.md).
-
-The original Chinese brainstorming draft is archived here:
-
-- [原始头脑风暴草稿](DOC/archive/原始头脑风暴草稿.md)
+- Policy boundary: [docs/open-source-boundary.md](docs/open-source-boundary.md)
+- Detection architecture: [docs/detection-architecture.md](docs/detection-architecture.md)
+- Low-flow notes: [docs/low-flow-detection.md](docs/low-flow-detection.md)
+- Desktop test bench: [docs/test-bench.md](docs/test-bench.md)
+- Safety notes: [docs/safety-notes.md](docs/safety-notes.md)
+- BOM: [BOM.md](BOM.md)
+- Chinese internal notes: [DOC/00-知识库索引.md](DOC/00-知识库索引.md)
