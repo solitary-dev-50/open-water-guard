@@ -28,6 +28,7 @@ const char* ToString(WaterRiskLevel level) {
 AppController::AppController(
     Buzzer& buzzer,
     StatusLed& status_led,
+    LocalButtons& local_buttons,
     LeakSensorManager& leak_sensor_manager,
     FlowSensor& flow_sensor,
     ConfigManager& config_manager,
@@ -36,6 +37,7 @@ AppController::AppController(
     RuleEngine& rule_engine)
     : buzzer_(buzzer),
       status_led_(status_led),
+      local_buttons_(local_buttons),
       leak_sensor_manager_(leak_sensor_manager),
       flow_sensor_(flow_sensor),
       config_manager_(config_manager),
@@ -46,6 +48,7 @@ AppController::AppController(
 void AppController::setup() {
   buzzer_.begin();
   status_led_.begin();
+  local_buttons_.begin();
   leak_sensor_manager_.begin();
   flow_sensor_.begin();
   config_manager_.begin();
@@ -70,6 +73,7 @@ void AppController::loop() {
 
 void AppController::pollModules() {
   power_manager_.poll();
+  local_buttons_.poll();
   leak_sensor_manager_.poll();
   flow_sensor_.poll();
 }
@@ -85,7 +89,17 @@ void AppController::updateDecision() {
 }
 
 void AppController::updateOutputs() {
-  buzzer_.setAlarmActive(current_decision_.buzzer_requested);
+  const ButtonSummary buttons = local_buttons_.summary();
+
+  if (buttons.mute_pressed || buttons.acknowledge_pressed) {
+    alarm_muted_ = true;
+  }
+
+  if (!current_decision_.buzzer_requested) {
+    alarm_muted_ = false;
+  }
+
+  buzzer_.setAlarmActive(current_decision_.buzzer_requested && !alarm_muted_);
   status_led_.setState(current_decision_.led_state);
 }
 
@@ -113,6 +127,8 @@ void AppController::emitLoopStatusIfDue() {
   Serial.print(flow_summary.liters_per_minute, 2);
   Serial.print(" flow_present=");
   Serial.print(flow_summary.flow_present ? "yes" : "no");
+  Serial.print(" muted=");
+  Serial.print(alarm_muted_ ? "yes" : "no");
   Serial.print(" main_power=");
   Serial.print(power_summary.main_power_available ? "ok" : "fault");
   Serial.print(" backup_power=");

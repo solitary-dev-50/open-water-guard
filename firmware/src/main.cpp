@@ -4,6 +4,7 @@
 #include "alarm/StatusLed.h"
 #include "app/AppController.h"
 #include "config/ConfigManager.h"
+#include "controls/LocalButtons.h"
 #include "logs/EventLog.h"
 #include "power/PowerManager.h"
 #include "rules/RuleEngine.h"
@@ -14,6 +15,7 @@ namespace {
 
 owg::Buzzer g_buzzer;
 owg::StatusLed g_status_led;
+owg::LocalButtons g_local_buttons;
 owg::LeakSensorManager g_leak_sensor_manager;
 owg::FlowSensor g_flow_sensor;
 owg::ConfigManager g_config_manager;
@@ -24,6 +26,7 @@ owg::RuleEngine g_rule_engine;
 owg::AppController g_app(
     g_buzzer,
     g_status_led,
+    g_local_buttons,
     g_leak_sensor_manager,
     g_flow_sensor,
     g_config_manager,

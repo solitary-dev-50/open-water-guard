@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstdint>
 #include <string>
 
 namespace owg {
@@ -13,13 +14,15 @@ struct LeakSensorState {
 
 class LeakSensor {
  public:
-  explicit LeakSensor(std::string id);
+  LeakSensor(std::string id, std::uint8_t pin);
 
+  void begin();
   void poll();
   const LeakSensorState& state() const;
 
  private:
   LeakSensorState state_;
+  std::uint8_t pin_;
 };
 
 }  // namespace owg

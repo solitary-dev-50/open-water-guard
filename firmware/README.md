@@ -29,7 +29,7 @@ Current state:
 
 - compiles as a PlatformIO Arduino prototype for `esp32-s3-devkitc-1`
 - provides a modular app structure
-- includes stub modules for leak sensing, flow sensing, buzzer, status LED, event log, config, and power summary
+- includes first-pass GPIO wiring for leak probes, flow pulse input, buzzer, status LED, mute button, and acknowledge button
 - prints boot and periodic local status over serial
 
 This firmware is not a finished product. It is a maintainable early base for offline detection-layer development.
@@ -49,19 +49,19 @@ This firmware is not a finished product. It is a maintainable early base for off
   - serial heartbeat output
 
 - `alarm/Buzzer`
-  - local buzzer state placeholder
+  - local buzzer output on `GPIO15`
 
 - `alarm/StatusLed`
-  - local indicator state placeholder
+  - local indicator output on `GPIO16`
 
 - `sensors/LeakSensor`
-  - single probe state placeholder
+  - single active-low probe input
 
 - `sensors/LeakSensorManager`
-  - multi-probe container and summary
+  - three active-low probe inputs
 
 - `sensors/FlowSensor`
-  - flow summary placeholder
+  - interrupt-based pulse counter on `GPIO7`
 
 - `rules/RuleEngine`
   - simple offline local alert decisions
@@ -75,36 +75,37 @@ This firmware is not a finished product. It is a maintainable early base for off
 - `power/PowerManager`
   - power summary placeholder
 
+- `controls/LocalButtons`
+  - active-low mute and acknowledge button inputs
+
 - `time/TimeUtils`
   - local time helper utilities
 
 ## Not Implemented Yet
 
-- real GPIO pin reads
-- interrupt-based pulse counting
 - calibrated low-flow timing
 - persistent event storage
 - optional display module
-- button debounce and button action handling
+- button debounce
 - real sensor fault detection
 - full power-loss recovery behavior
 - complete test-bench validation
 
 ## Pin Placeholder Table
 
-These are placeholders only. They are not final hardware assignments.
+These are first-pass ESP32-S3 DevKitC-1 assignments for desktop bench wiring. They may still change before PCB work.
 
-| Function | Placeholder | Notes |
+| Function | GPIO | Notes |
 | --- | --- | --- |
-| Leak probe 1 | `TBD` | final pin not assigned |
-| Leak probe 2 | `TBD` | final pin not assigned |
-| Leak probe 3 | `TBD` | final pin not assigned |
-| Flow pulse input | `TBD` | final pin not assigned |
-| Buzzer output | `TBD` | final pin not assigned |
-| Status LED output | `TBD` | final pin not assigned |
-| Mute button | `TBD` | final pin not assigned |
-| Acknowledge button | `TBD` | final pin not assigned |
-| Optional display bus | `TBD` | final pin not assigned |
+| Leak probe 1 | `GPIO4` | washer, active-low with internal pull-up |
+| Leak probe 2 | `GPIO5` | heater, active-low with internal pull-up |
+| Leak probe 3 | `GPIO6` | kitchen, active-low with internal pull-up |
+| Flow pulse input | `GPIO7` | rising-edge interrupt, internal pull-up |
+| Buzzer output | `GPIO15` | active-high output |
+| Status LED output | `GPIO16` | active-high output |
+| Mute button | `GPIO17` | active-low with internal pull-up |
+| Acknowledge button | `GPIO18` | active-low with internal pull-up |
+| Optional display bus | `TBD` | not implemented yet |
 
 ## Test-Bench Plan
 

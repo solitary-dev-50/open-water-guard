@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 namespace owg {
 
 struct FlowSensorSummary {
@@ -16,7 +18,11 @@ class FlowSensor {
   FlowSensorSummary summary() const;
 
  private:
+  static void handlePulseInterrupt();
+
   FlowSensorSummary summary_;
+  std::uint32_t last_sample_ms_ = 0;
+  std::uint32_t last_pulse_count_ = 0;
 };
 
 }  // namespace owg

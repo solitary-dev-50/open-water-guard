@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "pins/BoardPins.h"
 #include "sensors/LeakSensor.h"
 
 namespace owg {
@@ -22,7 +23,9 @@ class LeakSensorManager {
 
  private:
   std::vector<LeakSensor> sensors_{
-      LeakSensor("washer"), LeakSensor("heater"), LeakSensor("kitchen")};
+      LeakSensor("washer", pins::kLeakProbeWasher),
+      LeakSensor("heater", pins::kLeakProbeHeater),
+      LeakSensor("kitchen", pins::kLeakProbeKitchen)};
 };
 
 }  // namespace owg

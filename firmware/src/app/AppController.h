@@ -5,6 +5,7 @@
 #include "alarm/Buzzer.h"
 #include "alarm/StatusLed.h"
 #include "config/ConfigManager.h"
+#include "controls/LocalButtons.h"
 #include "logs/EventLog.h"
 #include "power/PowerManager.h"
 #include "rules/RuleEngine.h"
@@ -18,6 +19,7 @@ class AppController {
   AppController(
       Buzzer& buzzer,
       StatusLed& status_led,
+      LocalButtons& local_buttons,
       LeakSensorManager& leak_sensor_manager,
       FlowSensor& flow_sensor,
       ConfigManager& config_manager,
@@ -36,6 +38,7 @@ class AppController {
 
   Buzzer& buzzer_;
   StatusLed& status_led_;
+  LocalButtons& local_buttons_;
   LeakSensorManager& leak_sensor_manager_;
   FlowSensor& flow_sensor_;
   ConfigManager& config_manager_;
@@ -43,6 +46,7 @@ class AppController {
   PowerManager& power_manager_;
   RuleEngine& rule_engine_;
   WaterRiskDecision current_decision_;
+  bool alarm_muted_ = false;
   std::uint32_t last_status_print_ms_ = 0;
 };
 

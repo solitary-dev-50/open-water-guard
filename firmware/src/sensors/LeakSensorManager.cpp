@@ -2,7 +2,11 @@
 
 namespace owg {
 
-void LeakSensorManager::begin() {}
+void LeakSensorManager::begin() {
+  for (auto& sensor : sensors_) {
+    sensor.begin();
+  }
+}
 
 void LeakSensorManager::poll() {
   for (auto& sensor : sensors_) {
